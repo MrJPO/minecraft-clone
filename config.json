@@ -1,0 +1,9 @@
+{
+    "jump_height": 2,
+    "jump_duration": 0.5,
+    "jump_fall_after": 0.35,
+    "gravity_scale": 1,
+    "run_speed": 5,
+    "fps_counter": true,
+    "exit_button": false
+}

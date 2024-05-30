@@ -1,26 +1,30 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
+import json
 
 app = Ursina()
 
-jump_height = 2 # Default: 2
-jump_duration = 0.5 # Default: 0.5
-jump_fall_after = 0.35 # Default: 0.35
-gravity_scale = 1 # Default: 1
-mouse_sensitivity = Vec2(40,40) # Default: (40,40)
-run_speed = 5 # Default: 5
+with open("config.json", "r") as configuration:
+    data = json.load(configuration)
+    jump_height = data['jump_height']
+    jump_duration = data['jump_duration']
+    jump_fall_after = data['jump_fall_after']
+    gravity_scale = data['gravity_scale']
+    run_speed = data['run_speed']
+    window.fps_counter.enabled = data['fps_counter']
+    window.exit_button.visible = data['exit_button']
 
-window.fps_counter.enabled = False
-window.exit_button.visible = False
+
+mouse_sensitivity = Vec2(40,40) # Default: (40,40)
 
 punch = Audio('assets/punch', autoplay=False)
 
 blocks = [
-    load_texture('assets/grass.png'), # 0
-    load_texture('assets/grass.png'), # 1
-    load_texture('assets/stone.png'), # 2
-    load_texture('assets/gold.png'),  # 3
-    load_texture('assets/lava.png'),  # 4
+    load_texture('assets/grass.png'),
+    load_texture('assets/grass.png'),
+    load_texture('assets/stone.png'),
+    load_texture('assets/gold.png'),
+    load_texture('assets/lava.png'),
 ]
 
 block_id = 1
